@@ -48,6 +48,12 @@ import org.springframework.lang.Nullable;
  * @see ClassPathResource
  * @see ByteArrayResource
  * @see InputStreamResource
+ *
+ *
+ *  Spring对其内部使用到的资源实现了自己的抽象结构：Resource接口封装底层资源
+ *  对不同来源的资源文件都有相应的Resource实现，文件（FileSystemResource）、Classpath资源（ClassPathResource）
+ *  URL资源（UrlResource） InputStream资源（InputStreamResource） Byte数组（ByteArrayResource）等
+ *
  */
 public interface Resource extends InputStreamSource {
 
@@ -56,6 +62,7 @@ public interface Resource extends InputStreamSource {
 	 * <p>This method performs a definitive existence check, whereas the
 	 * existence of a {@code Resource} handle only guarantees a valid
 	 * descriptor handle.
+	 * 检查当前资源是否实际存在
 	 */
 	boolean exists();
 
@@ -69,6 +76,8 @@ public interface Resource extends InputStreamSource {
 	 * that the resource content cannot be read.
 	 * @see #getInputStream()
 	 * @see #exists()
+	 *
+	 * 检查当前资源是否可读
 	 */
 	default boolean isReadable() {
 		return exists();
@@ -79,6 +88,8 @@ public interface Resource extends InputStreamSource {
 	 * If {@code true}, the InputStream cannot be read multiple times,
 	 * and must be read and closed to avoid resource leaks.
 	 * <p>Will be {@code false} for typical resource descriptors.
+	 *
+	 * 是否处于打开状态？
 	 */
 	default boolean isOpen() {
 		return false;
@@ -154,6 +165,8 @@ public interface Resource extends InputStreamSource {
 	 * @param relativePath the relative path (relative to this resource)
 	 * @return the resource handle for the relative resource
 	 * @throws IOException if the relative resource cannot be determined
+	 *
+	 * 基于当前资源创建一个相对资源？
 	 */
 	Resource createRelative(String relativePath) throws IOException;
 
