@@ -53,6 +53,15 @@ public abstract class BeanDefinitionReaderUtils {
 	 * (can be {@code null} to just register bean classes by name)
 	 * @return the bean definition
 	 * @throws ClassNotFoundException if the bean class could not be loaded
+	 *
+	 * BeanDefinition是一个接口，在Spring中存在三种实现：RootBeanDefinition  ChildBeanDefinition 以及GenericBeanDefinition
+	 * 三种实现均继承了AbstractBeanDefinition
+	 *
+	 * BeanDefinition是配置文件<bean>元素标签在容器中的内部表示形式，BeanDefinition的属性与标签<bean>中的属性是一一对应的；
+	 * RootBeanDefinition：最常用，它对应一般性的<bean>标签
+	 * GenericBeanDefinition:子2.5版本之后新加入的bean文件配置属性定义类
+	 * ChildBeanDefinition:子<bean>
+	 *
 	 */
 	public static AbstractBeanDefinition createBeanDefinition(
 			@Nullable String parentName, @Nullable String className, @Nullable ClassLoader classLoader) throws ClassNotFoundException {
@@ -156,6 +165,9 @@ public abstract class BeanDefinitionReaderUtils {
 	 * @param definitionHolder the bean definition including name and aliases
 	 * @param registry the bean factory to register with
 	 * @throws BeanDefinitionStoreException if registration failed
+	 *
+	 *
+	 *
 	 */
 	public static void registerBeanDefinition(
 			BeanDefinitionHolder definitionHolder, BeanDefinitionRegistry registry)

@@ -44,6 +44,10 @@ import org.springframework.core.AliasRegistry;
  * @see org.springframework.context.support.GenericApplicationContext
  * @see org.springframework.beans.factory.xml.XmlBeanDefinitionReader
  * @see PropertiesBeanDefinitionReader
+ *
+ *
+ *  Spring通过BeanDefinition将配置文件中的<bean>配置信息转换为容器内部表示，并将这些BeanDefinition注册到BeanDefinitionRegistry中
+ *  Spring容器的BeanDefinitionRegistry就像是这些配置信息的内存数据库，主要是以map的形式保存，后续操作直接从map中读取配置信息
  */
 public interface BeanDefinitionRegistry extends AliasRegistry {
 

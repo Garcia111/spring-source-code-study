@@ -516,6 +516,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 	public void refresh() throws BeansException, IllegalStateException {
 		synchronized (this.startupShutdownMonitor) {
 			// Prepare this context for refreshing.
+			//准备工作，包括设置启动时间，是否激活标识位，初始化属性源配置
 			prepareRefresh();
 
 			// Tell the subclass to refresh the internal bean factory.

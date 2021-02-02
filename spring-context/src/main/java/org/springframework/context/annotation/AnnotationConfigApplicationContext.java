@@ -53,8 +53,15 @@ import org.springframework.util.Assert;
  */
 public class AnnotationConfigApplicationContext extends GenericApplicationContext implements AnnotationConfigRegistry {
 
+
+	/**
+	 * 一个读取器，读取AnnotationBeanDefinition也就是加了注解的Bean
+	 */
 	private final AnnotatedBeanDefinitionReader reader;
 
+	/**
+	 * 扫描器，扫描所有加了注解的Bean
+	 */
 	private final ClassPathBeanDefinitionScanner scanner;
 
 
@@ -86,6 +93,7 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	public AnnotationConfigApplicationContext(Class<?>... componentClasses) {
 		this();
 		register(componentClasses);
+		//初始化bean的容器
 		refresh();
 	}
 
@@ -146,6 +154,9 @@ public class AnnotationConfigApplicationContext extends GenericApplicationContex
 	//---------------------------------------------------------------------
 
 	/**
+	 *
+	 * 既可以注册单个Bean 也可以注册一个配置类
+	 *
 	 * Register one or more component classes to be processed.
 	 * <p>Note that {@link #refresh()} must be called in order for the context
 	 * to fully process the new classes.
